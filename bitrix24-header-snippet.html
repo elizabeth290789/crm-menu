@@ -1,0 +1,220 @@
+<!-- Bitrix24 landing header/menu snippet: paste as one HTML block above the hero section. -->
+<style>
+  /*
+    Optional legacy-header neutralizer.
+    Hide only the standard Bitrix24 landing header containers so the previous
+    stretched background/pseudo-layer cannot sit above links and steal clicks.
+    The custom header below is scoped to .b24-landing-header and is not affected.
+  */
+  body > .u-header,
+  body > header.u-header,
+  body > #header.u-header,
+  body > .landing-header,
+  body > header.landing-header {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  .b24-landing-header,
+  .b24-landing-header *,
+  .b24-landing-header *::before,
+  .b24-landing-header *::after {
+    box-sizing: border-box;
+  }
+
+  .b24-landing-header {
+    --b24-header-bg: #f5fbff;
+    --b24-header-text: #111111;
+    --b24-header-accent: #b6ff00;
+    --b24-header-accent-hover: #bbf100;
+
+    position: relative;
+    z-index: 50;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: var(--b24-header-bg);
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    pointer-events: auto;
+    overflow: visible;
+  }
+
+  .b24-landing-header::before,
+  .b24-landing-header::after {
+    content: none !important;
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  .b24-landing-header__inner {
+    width: min(100%, 1440px);
+    margin: 0 auto;
+    padding: 22px clamp(16px, 3vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    background: var(--b24-header-bg);
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .b24-landing-header__logo {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    color: var(--b24-header-text);
+    font-size: clamp(22px, 2.2vw, 34px);
+    line-height: 1;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .b24-landing-header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(16px, 2.15vw, 38px);
+    min-width: 0;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .b24-landing-header__link,
+  .b24-landing-header__button {
+    position: relative;
+    z-index: 3;
+    pointer-events: auto;
+    cursor: pointer;
+    color: var(--b24-header-text);
+    text-decoration: none;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .b24-landing-header__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    font-size: clamp(11px, 0.95vw, 14px);
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.96;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .b24-landing-header__link:hover,
+  .b24-landing-header__link:focus-visible {
+    opacity: 0.72;
+  }
+
+  .b24-landing-header__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 13px clamp(18px, 1.55vw, 28px);
+    border-radius: 50px;
+    background: var(--b24-header-accent);
+    color: #000000;
+    font-size: clamp(11px, 0.95vw, 14px);
+    line-height: 1.1;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: none;
+    transition: background-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .b24-landing-header__button:hover,
+  .b24-landing-header__button:focus-visible {
+    background: var(--b24-header-accent-hover);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 1024px) {
+    .b24-landing-header__inner {
+      padding-top: 18px;
+      padding-bottom: 18px;
+      gap: 18px;
+    }
+
+    .b24-landing-header__nav {
+      gap: 14px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .b24-landing-header__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      gap: 14px;
+    }
+
+    .b24-landing-header__nav {
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+    }
+
+    .b24-landing-header__link {
+      min-height: 34px;
+      font-size: 11px;
+    }
+
+    .b24-landing-header__button {
+      min-height: 40px;
+      padding: 12px 18px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .b24-landing-header__nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .b24-landing-header__link,
+    .b24-landing-header__button {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .b24-landing-header__button {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<header class="b24-landing-header" role="banner">
+  <div class="b24-landing-header__inner">
+    <a class="b24-landing-header__logo" href="#top" aria-label="Битрикс24">
+      Битрикс24
+    </a>
+
+    <nav class="b24-landing-header__nav" aria-label="Главное меню">
+      <a class="b24-landing-header__link" href="#features">Возможности</a>
+      <a class="b24-landing-header__link" href="#ai-crm">AI в CRM</a>
+      <a class="b24-landing-header__link" href="#security">Безопасность</a>
+      <a class="b24-landing-header__link" href="#discounts">Скидки</a>
+      <a class="b24-landing-header__button" href="#signup">Создать бесплатно</a>
+    </nav>
+  </div>
+</header>
