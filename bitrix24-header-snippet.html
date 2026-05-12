@@ -64,16 +64,16 @@
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    color: var(--b24-header-text);
-    font-size: clamp(22px, 2.2vw, 34px);
-    line-height: 1;
-    font-weight: 800;
     text-decoration: none;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
     position: relative;
     z-index: 2;
     pointer-events: auto;
+  }
+
+  .b24-landing-header__logo-image {
+    display: block;
+    width: clamp(132px, 13vw, 188px);
+    height: auto;
   }
 
   .b24-landing-header__nav {
@@ -206,7 +206,12 @@
 <header class="b24-landing-header" role="banner">
   <div class="b24-landing-header__inner">
     <a class="b24-landing-header__logo" href="#top" aria-label="Битрикс24">
-      Битрикс24
+      <img
+        class="b24-landing-header__logo-image"
+        src="https://www.bitrix24.ru/upload/landing/5cd/oh9as8m0d97fy4easzqmgw487pansxbo.png"
+        alt="Битрикс24"
+        loading="eager"
+      >
     </a>
 
     <nav class="b24-landing-header__nav" aria-label="Главное меню">
