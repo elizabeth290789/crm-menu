@@ -26,10 +26,12 @@
 
   .b24-landing-header {
     --b24-header-bg: rgba(245, 251, 255, 0.85);
+    --b24-header-mobile-bg: rgba(245, 251, 255, 0.88);
     --b24-header-text: #111111;
     --b24-header-accent: #bbf100;
     --b24-header-accent-hover: #c7ff00;
     --b24-header-shadow: 0 12px 36px rgba(18, 31, 43, 0.08);
+    --b24-header-menu-shadow: 0 24px 70px rgba(24, 57, 96, 0.16);
 
     position: fixed;
     top: 0;
@@ -94,6 +96,79 @@
     display: block;
     width: clamp(132px, 13vw, 188px);
     height: auto;
+  }
+
+
+  .b24-landing-header__burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: inset 0 0 0 1px rgba(50, 119, 253, 0.12);
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    z-index: 4;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .b24-landing-header__burger:hover,
+  .b24-landing-header__burger:focus-visible {
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: inset 0 0 0 1px rgba(50, 119, 253, 0.22), 0 10px 28px rgba(50, 119, 253, 0.12);
+  }
+
+  .b24-landing-header__burger:active {
+    transform: scale(0.97);
+  }
+
+  .b24-landing-header__burger-line {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgb(50, 119, 253);
+    position: absolute;
+    left: 13px;
+    transform-origin: center;
+    transition:
+      transform 0.24s ease,
+      opacity 0.18s ease,
+      top 0.24s ease;
+  }
+
+  .b24-landing-header__burger-line:nth-child(1) {
+    top: 14px;
+  }
+
+  .b24-landing-header__burger-line:nth-child(2) {
+    top: 21px;
+  }
+
+  .b24-landing-header__burger-line:nth-child(3) {
+    top: 28px;
+  }
+
+  .b24-landing-header.is-menu-open .b24-landing-header__burger-line:nth-child(1) {
+    top: 21px;
+    transform: rotate(45deg);
+  }
+
+  .b24-landing-header.is-menu-open .b24-landing-header__burger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.3);
+  }
+
+  .b24-landing-header.is-menu-open .b24-landing-header__burger-line:nth-child(3) {
+    top: 21px;
+    transform: rotate(-45deg);
   }
 
   .b24-landing-header__nav {
@@ -204,58 +279,183 @@
   }
 
   @media (max-width: 767px) {
+    .b24-landing-header {
+      background: var(--b24-header-mobile-bg);
+      z-index: 9999;
+    }
+
     .b24-landing-header__inner {
-      align-items: flex-start;
-      flex-direction: column;
-      padding-top: 16px;
-      padding-bottom: 16px;
-      gap: 14px;
+      min-height: 68px;
+      align-items: center;
+      flex-direction: row;
+      padding: 10px 16px;
+      gap: 12px;
     }
 
     .b24-landing-header.is-scrolled .b24-landing-header__inner {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .b24-landing-header__logo-image {
+      width: clamp(126px, 42vw, 150px);
+    }
+
+    .b24-landing-header__burger {
+      display: inline-flex;
+      flex: 0 0 auto;
     }
 
     .b24-landing-header__nav {
-      width: 100%;
+      width: calc(100% - 32px);
+      max-height: calc(100vh - 88px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       justify-content: flex-start;
-      flex-wrap: wrap;
-      gap: 8px 14px;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid rgba(50, 119, 253, 0.11);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(246, 251, 255, 0.9) 100%);
+      box-shadow: var(--b24-header-menu-shadow);
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 16px;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, -10px, 0) scale(0.98);
+      transform-origin: top center;
+      transition:
+        opacity 0.22s ease,
+        visibility 0.22s ease,
+        transform 0.22s ease;
+    }
+
+    .b24-landing-header.is-menu-open .b24-landing-header__nav {
+      pointer-events: auto;
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0) scale(1);
     }
 
     .b24-landing-header__link {
-      min-height: 34px;
-      font-size: 12px;
-      line-height: 19px;
+      min-height: 44px;
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0 14px;
+      border-radius: 16px;
+      color: rgb(50, 119, 253);
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 600;
+      letter-spacing: 0.015em;
+      opacity: 1;
+      transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
     }
 
-    .b24-landing-header__button {
-      min-height: 40px;
-      padding: 11px 18px;
-      font-size: 12px;
-      line-height: 17px;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .b24-landing-header__nav {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+    .b24-landing-header__link:hover,
+    .b24-landing-header__link:focus-visible {
+      background: rgba(50, 119, 253, 0.08);
+      opacity: 1;
+      transform: translateX(2px);
     }
 
-    .b24-landing-header__link,
     .b24-landing-header__button {
       width: 100%;
-      justify-content: center;
-      text-align: center;
+      min-height: 48px;
+      margin-top: 8px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background-color: var(--b24-header-accent);
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 14px 30px rgba(187, 241, 0, 0.28);
     }
 
-    .b24-landing-header__button {
-      grid-column: 1 / -1;
+    .b24-landing-header__button:hover,
+    .b24-landing-header__button:focus-visible {
+      background-color: var(--b24-header-accent-hover);
+      box-shadow: 0 16px 34px rgba(187, 241, 0, 0.36);
+      transform: translateY(-1px);
+    }
+
+    .b24-hero-mobile-flow {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .b24-hero-mobile-badge {
+      order: 1 !important;
+    }
+
+    .b24-hero-mobile-title {
+      order: 2 !important;
+    }
+
+    .b24-hero-mobile-subtitle {
+      order: 3 !important;
+    }
+
+    .b24-hero-mobile-chips {
+      order: 4 !important;
+    }
+
+    .b24-hero-mobile-cta {
+      order: 5 !important;
+    }
+
+    .b24-hero-mobile-visual {
+      order: 6 !important;
+      margin-top: 24px !important;
     }
   }
+
+  @media (max-width: 360px) {
+    .b24-landing-header__inner {
+      min-height: 64px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .b24-landing-header__nav {
+      width: calc(100% - 24px);
+      left: 12px;
+      padding: 14px;
+      border-radius: 24px;
+    }
+
+    .b24-landing-header__logo-image {
+      width: 122px;
+    }
+
+    .b24-landing-header__burger {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+    }
+
+    .b24-landing-header__burger-line {
+      left: 12px;
+    }
+
+    .b24-landing-header__link {
+      font-size: 15px;
+      min-height: 42px;
+    }
+  }
+
 </style>
 
 <header class="b24-landing-header" role="banner">
@@ -269,7 +469,19 @@
       >
     </a>
 
-    <nav class="b24-landing-header__nav" aria-label="Главное меню">
+    <button
+      class="b24-landing-header__burger"
+      type="button"
+      aria-label="Открыть меню"
+      aria-controls="b24-landing-mobile-menu"
+      aria-expanded="false"
+    >
+      <span class="b24-landing-header__burger-line" aria-hidden="true"></span>
+      <span class="b24-landing-header__burger-line" aria-hidden="true"></span>
+      <span class="b24-landing-header__burger-line" aria-hidden="true"></span>
+    </button>
+
+    <nav class="b24-landing-header__nav" id="b24-landing-mobile-menu" aria-label="Главное меню">
       <a class="b24-landing-header__link" href="https://www.bitrix24.ru/promo/crm-sales/#b278970">Возможности</a>
       <a class="b24-landing-header__link" href="https://www.bitrix24.ru/promo/crm-sales/#b279026">AI в CRM</a>
       <a class="b24-landing-header__link" href="https://www.bitrix24.ru/promo/crm-sales/#b279074">Безопасность</a>
@@ -290,8 +502,12 @@
     }
 
     var root = document.documentElement;
+    var nav = header.querySelector('.b24-landing-header__nav');
+    var burger = header.querySelector('.b24-landing-header__burger');
+    var menuLinks = header.querySelectorAll('.b24-landing-header__link, .b24-landing-header__button');
     var ticking = false;
     var reservedHeight = 0;
+    var mobileMedia = window.matchMedia('(max-width: 767px)');
 
     function setSpacerHeight(height) {
       spacer.style.height = height + 'px';
@@ -306,6 +522,21 @@
       var height = Math.ceil(header.getBoundingClientRect().height);
       reservedHeight = Math.max(reservedHeight, height);
       setSpacerHeight(reservedHeight);
+    }
+
+    function setMenuState(isOpen) {
+      if (!burger || !nav) {
+        return;
+      }
+
+      header.classList.toggle('is-menu-open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+      nav.setAttribute('aria-hidden', String(!isOpen && mobileMedia.matches));
+    }
+
+    function closeMenu() {
+      setMenuState(false);
     }
 
     function updateScrollState() {
@@ -323,7 +554,41 @@
 
     function handleResize() {
       reservedHeight = 0;
+      if (!mobileMedia.matches) {
+        closeMenu();
+        if (nav) {
+          nav.removeAttribute('aria-hidden');
+        }
+      } else if (nav) {
+        nav.setAttribute('aria-hidden', String(!header.classList.contains('is-menu-open')));
+      }
       requestUpdate();
+    }
+
+    if (burger) {
+      burger.addEventListener('click', function () {
+        setMenuState(!header.classList.contains('is-menu-open'));
+      });
+    }
+
+    menuLinks.forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (event) {
+      if (mobileMedia.matches && header.classList.contains('is-menu-open') && !header.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
+    if (nav && mobileMedia.matches) {
+      nav.setAttribute('aria-hidden', 'true');
     }
 
     updateHeaderHeight(true);
@@ -332,6 +597,12 @@
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
+
+    if (mobileMedia.addEventListener) {
+      mobileMedia.addEventListener('change', handleResize);
+    } else if (mobileMedia.addListener) {
+      mobileMedia.addListener(handleResize);
+    }
 
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () {
