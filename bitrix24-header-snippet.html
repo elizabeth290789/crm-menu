@@ -28,7 +28,7 @@
     --b24-header-bg: rgba(245, 251, 255, 0.85);
     --b24-header-text: #111111;
     --b24-header-accent: #bbf100;
-    --b24-header-accent-hover: #caff24;
+    --b24-header-accent-hover: #c7ff00;
     --b24-header-shadow: 0 12px 36px rgba(18, 31, 43, 0.08);
 
     position: fixed;
@@ -149,8 +149,8 @@
     min-height: 44px;
     padding: 13px clamp(18px, 1.55vw, 28px);
     border-radius: 50px;
-    background: var(--b24-header-accent);
-    color: rgb(0, 0, 0);
+    background-color: var(--b24-header-accent);
+    color: #000000;
     font-style: normal;
     font-size: 12px;
     line-height: 17px;
@@ -158,15 +158,19 @@
     letter-spacing: 0.015em;
     text-transform: uppercase;
     white-space: nowrap;
+    opacity: 1;
     box-shadow: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: geometricPrecision;
-    transition: background-color 0.18s ease, transform 0.18s ease;
+    transition: all 0.25s ease;
   }
 
   .b24-landing-header__button:hover,
   .b24-landing-header__button:focus-visible {
-    background: var(--b24-header-accent-hover);
+    background-color: var(--b24-header-accent-hover);
+    color: #000000;
+    opacity: 1;
+    box-shadow: 0 12px 28px rgba(187, 241, 0, 0.35);
     transform: translateY(-1px);
   }
 
