@@ -1,6 +1,6 @@
 <!-- Bitrix24 landing fixed header/menu snippet: paste as one HTML block above the hero section. -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
   /*
     Optional legacy-header neutralizer.
@@ -123,13 +123,17 @@
     display: inline-flex;
     align-items: center;
     min-height: 40px;
-    font-size: clamp(11px, 0.95vw, 14px);
-    line-height: 1.2;
-    font-weight: 800;
+    color: rgb(50, 119, 253);
+    font-style: normal;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 600;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     white-space: nowrap;
     opacity: 0.96;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
     transition: opacity 0.18s ease, transform 0.18s ease;
   }
 
@@ -146,14 +150,17 @@
     padding: 13px clamp(18px, 1.55vw, 28px);
     border-radius: 50px;
     background: var(--b24-header-accent);
-    color: #000000;
-    font-size: clamp(11px, 0.95vw, 14px);
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: 0.02em;
+    color: rgb(0, 0, 0);
+    font-style: normal;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 700;
+    letter-spacing: 0.015em;
     text-transform: uppercase;
     white-space: nowrap;
     box-shadow: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
     transition: background-color 0.18s ease, transform 0.18s ease;
   }
 
@@ -215,13 +222,15 @@
 
     .b24-landing-header__link {
       min-height: 34px;
-      font-size: 11px;
+      font-size: 12px;
+      line-height: 19px;
     }
 
     .b24-landing-header__button {
       min-height: 40px;
-      padding: 12px 18px;
-      font-size: 11px;
+      padding: 11px 18px;
+      font-size: 12px;
+      line-height: 17px;
     }
   }
 
